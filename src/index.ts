@@ -4,29 +4,37 @@ import { parseColorName } from './parseColorName'
 import { parseContent } from './parseContent'
 import ParserInline from 'markdown-it/lib/parser_inline'
 
+import {openColorName} from './constants';
+import {isEscaped} from "./utils";
+
 export const colorPlugin: PluginWithOptions<Options> = (
   md,
   {
-    defaultClassName = 'md-colorify', //
+    defaultClassName = 'md-colorify',
     inline = false,
+    escape: shouldEscape = false,
   } = {},
 ) => {
   const tokenize: ParserInline.RuleInline = (state, silent) => {
     const max = state.posMax
 
-    if (state.src.charCodeAt(state.pos) !== 0x7b /* { */) {
+    if (state.src.charCodeAt(state.pos) !== openColorName) {
+      return false
+    }
+
+    if (shouldEscape && isEscaped(state)) {
       return false
     }
 
     const labelStart = state.pos + 1
-    const labelEnd = parseColorName(state, state.pos, true)
+    const labelEnd = parseColorName(state, state.pos, true, shouldEscape)
     if (labelEnd < 0) {
       return false
     }
     const colorName = state.src.substring(labelStart, labelEnd)
 
     const contentStart = labelEnd + 2
-    const contentEnd = parseContent(state, labelEnd + 1)
+    const contentEnd = parseContent(state, labelEnd + 1, shouldEscape)
     if (contentEnd < 0) {
       return false
     }
