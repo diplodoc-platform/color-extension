@@ -1,6 +1,6 @@
 import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
-import {closeContent, openContent} from './constants';
+import {ColorTokenChar} from './constants';
 import {isEscaped} from "./utils";
 
 /**
@@ -11,19 +11,19 @@ export const parseContent = (state: StateInline, start: number, shouldEscape: bo
   let pos = start
   const max = state.posMax
 
-  if (pos < max && state.src.charCodeAt(pos) === openContent) {
+  if (pos < max && state.src.charCodeAt(pos) === ColorTokenChar.OpenContent) {
     pos++
 
     let level = 1
     while (pos < max) {
       const char = state.src.charCodeAt(pos)
-      if (!(shouldEscape && isEscaped(state)) && char === closeContent) {
+      if (!(shouldEscape && isEscaped(state)) && char === ColorTokenChar.CloseContent) {
         level--
 
         if (level === 0) {
           return pos
         }
-      } else if (!(shouldEscape && isEscaped(state)) && char === openContent) {
+      } else if (!(shouldEscape && isEscaped(state)) && char === ColorTokenChar.OpenContent) {
         level++
       }
       pos++

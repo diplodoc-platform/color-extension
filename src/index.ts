@@ -4,7 +4,7 @@ import { parseColorName } from './parseColorName'
 import { parseContent } from './parseContent'
 import ParserInline from 'markdown-it/lib/parser_inline'
 
-import {openColorName} from './constants';
+import {ColorTokenChar} from './constants';
 import {isEscaped} from "./utils";
 
 export const colorPlugin: PluginWithOptions<Options> = (
@@ -18,7 +18,7 @@ export const colorPlugin: PluginWithOptions<Options> = (
   const tokenize: ParserInline.RuleInline = (state, silent) => {
     const max = state.posMax
 
-    if (state.src.charCodeAt(state.pos) !== openColorName) {
+    if (state.src.charCodeAt(state.pos) !== ColorTokenChar.OpenColorName) {
       return false
     }
 

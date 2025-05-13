@@ -1,6 +1,6 @@
 import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
-import {escape} from './constants';
+import {ColorTokenChar} from './constants';
 
 export function isEscaped(state: StateInline): boolean {
     // An escape is valid if it is preceded by an **odd** number of consecutive
@@ -9,7 +9,7 @@ export function isEscaped(state: StateInline): boolean {
     let count = 0;
     let i = state.pos - 1;
 
-    while (i >= 0 && state.src.charCodeAt(i) === escape) {
+    while (i >= 0 && state.src.charCodeAt(i) === ColorTokenChar.Escape) {
         count++;
         i--;
     }

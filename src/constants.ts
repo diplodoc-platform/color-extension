@@ -1,5 +1,8 @@
-export const openColorName = 0x7b /* { */
-export const closeColorName = 0x7d /* } */
-export const openContent = 0x28 /* ( */
-export const closeContent = 0x29 /* ) */
-export const escape = 0x5c /* \ */
+/** Char codes of tokens used by the color plugin. */
+export const enum ColorTokenChar {
+    OpenColorName  = 0x7b, // {
+    CloseColorName = 0x7d, // }
+    OpenContent    = 0x28, // (
+    CloseContent   = 0x29, // )
+    Escape         = 0x5c, // \
+}
