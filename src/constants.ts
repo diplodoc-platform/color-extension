@@ -4,5 +4,5 @@ export const enum ColorTokenChar {
     CloseColorName = 0x7d, // }
     OpenContent    = 0x28, // (
     CloseContent   = 0x29, // )
-    Escape         = 0x5c, // \
+    Backslash      = 0x5c, // \
 }

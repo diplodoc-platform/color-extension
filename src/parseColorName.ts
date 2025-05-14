@@ -20,7 +20,7 @@ export const parseColorName = (state: StateInline, start: number, disableNested:
   while (state.pos < max) {
     const marker = state.src.charCodeAt(state.pos)
 
-    if (!(shouldEscape && isEscaped(state)) && marker === ColorTokenChar.CloseColorName) {
+    if (!(shouldEscape && isEscaped(state.src, state.pos)) && marker === ColorTokenChar.CloseColorName) {
       level--
       if (level === 0) {
         found = true
@@ -31,7 +31,7 @@ export const parseColorName = (state: StateInline, start: number, disableNested:
     prevPos = state.pos
     state.md.inline.skipToken(state)
 
-    if (!(shouldEscape && isEscaped(state)) && marker === ColorTokenChar.OpenColorName) {
+    if (!(shouldEscape && isEscaped(state.src, state.pos)) && marker === ColorTokenChar.OpenColorName) {
       if (prevPos === state.pos - 1) {
         // increase level if we find open bracket, which is not a part of any token
         level++

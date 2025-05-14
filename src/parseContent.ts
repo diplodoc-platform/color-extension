@@ -9,30 +9,36 @@ import {isEscaped} from "./utils";
  */
 export const parseContent = (state: StateInline, start: number, shouldEscape: boolean = false): number => {
   let pos = start
-  const max = state.posMax
+  const {posMax: max, src} = state
 
-  if (pos < max && state.src.charCodeAt(pos) === ColorTokenChar.OpenContent) {
-    pos++
+  if (pos >= max || src.charCodeAt(pos) !== ColorTokenChar.OpenContent) {
+    return -1;
+  }
 
-    let level = 1
-    while (pos < max) {
-      const char = state.src.charCodeAt(pos)
-      if (!(shouldEscape && isEscaped(state)) && char === ColorTokenChar.CloseContent) {
-        level--
+  pos++
+  let level = 1
 
-        if (level === 0) {
-          return pos
-        }
-      } else if (!(shouldEscape && isEscaped(state)) && char === ColorTokenChar.OpenContent) {
-        level++
-      }
-      pos++
+  while (pos < max) {
+    const char = src.charCodeAt(pos)
+
+    if (shouldEscape && isEscaped(src, pos)) {
+      pos++;
+      continue;
     }
 
-    // if we failed to find ")"
-    return -1
-  } else {
-    // if we failed to find "("
-    return -1
+    if (char === ColorTokenChar.CloseContent) {
+      level--;
+
+      if (level === 0) {
+        return pos;
+      }
+    } else if (char === ColorTokenChar.OpenContent) {
+      level++;
+    }
+
+    pos++;
   }
+
+  // if we failed to find "("
+  return -1
 }

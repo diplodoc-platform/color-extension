@@ -22,7 +22,7 @@ export const colorPlugin: PluginWithOptions<Options> = (
       return false
     }
 
-    if (shouldEscape && isEscaped(state)) {
+    if (shouldEscape && isEscaped(state.src, state.pos)) {
       return false
     }
 
@@ -49,7 +49,6 @@ export const colorPlugin: PluginWithOptions<Options> = (
         openToken.attrs.push(['style', `color: ${colorName};`])
       }
       openToken.info = colorName
-
       state.md.inline.tokenize(state)
 
       const closeToken = state.push('color_close', 'span', -1)
@@ -61,7 +60,7 @@ export const colorPlugin: PluginWithOptions<Options> = (
     return true
   }
 
-  md.inline.ruler.before('emphasis', 'color', tokenize)
+    md.inline.ruler.before('emphasis', 'color', tokenize)
 }
 
 export default colorPlugin
