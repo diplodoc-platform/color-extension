@@ -5,7 +5,7 @@ import { parseContent } from './parseContent'
 import ParserInline from 'markdown-it/lib/parser_inline'
 
 import {ColorTokenChar} from './constants';
-import {isEscaped} from "./utils";
+import {isEscaped} from './utils';
 
 export const colorPlugin: PluginWithOptions<Options> = (
   md,
@@ -60,7 +60,7 @@ export const colorPlugin: PluginWithOptions<Options> = (
     return true
   }
 
-    md.inline.ruler.before('emphasis', 'color', tokenize)
+  md.inline.ruler.before('emphasis', 'color', tokenize)
 }
 
 export default colorPlugin

@@ -1,7 +1,7 @@
 import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
 import {ColorTokenChar} from './constants';
-import {isEscaped} from "./utils";
+import {isEscaped} from './utils';
 
 /**
  * If successful, returns end pos.

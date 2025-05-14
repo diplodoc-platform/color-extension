@@ -7,7 +7,7 @@ export function isEscaped(src: string, pos: number): boolean {
     let count = 0;
     let i = pos - 1;
 
-    while (i >= 0 && src.charCodeAt(i) === ColorTokenChar.Backslash) {
+    while (i >= 0 && src.charCodeAt(i) === ColorTokenChar.Escape) {
         count++;
         i--;
     }
