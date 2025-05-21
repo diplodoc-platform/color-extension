@@ -1,7 +1,7 @@
 {
-  "name": "markdown-it-color",
-  "version": "2.1.1",
-  "description": "Inline color plugin for markdown-it",
+  "name": "@diplodoc/color-extension",
+  "version": "0.1.0",
+  "description": "Inline color plugin for Diplodoc transformer and builder",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
@@ -17,20 +17,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nkjmsss/markdown-it-color.git"
+    "url": "git+https://github.com/diplodoc-platform/color-extension"
   },
   "keywords": [
     "markdown-it",
     "markdown-it-plugin",
     "markdown",
-    "color"
+    "color",
+    "diplodoc"
   ],
   "author": "nkjmsss",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nkjmsss/markdown-it-color/issues"
+    "url": "https://github.com/diplodoc-platform/color-extension/issues"
   },
-  "homepage": "https://github.com/nkjmsss/markdown-it-color#readme",
+  "homepage": "https://github.com/diplodoc-platform/color-extension#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-arrow-functions": "^7.2.0",

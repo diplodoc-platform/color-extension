@@ -1,16 +1,16 @@
-# markdown-it-color
+# @diplodoc/color-extension
 
 ## install
 
 ```shell
-npm install markdown-it-color --save
+npm install @diplodoc/color-extension --save
 ```
 
 ## use
 
 ```javascript
 var md = require('markdown-it')()
-            .use(require('markdown-it-color'))
+            .use(require('@diplodoc/color-extension'))
 ```
 
 ## API
@@ -18,22 +18,22 @@ var md = require('markdown-it')()
 You can add options. Default option is below.
 
 ```javascript
-var md = require('markdown-it')()
-            .use(require('markdown-it-color'), {
-              defaultClassName: 'md-colorify', // default
+const md = require('markdown-it')()
+            .use(require('@diplodoc/color-extension'), {
+              defaultClassName: 'yfm-colorify',
               inline: false, // default
             })
 
-md.render('{primary}(sample)') // => '<span class="md-colorify md-colorify--primary">sample</span>'
+md.render('{primary}(sample)') // => '<span class="yfm-colorify yfm-colorify--primary">sample</span>'
 ```
 
 If you want to use inline style, use like below.
 
 ```javascript
-var md = require('markdown-it')()
-            .use(require('markdown-it-color'), {
+const md = require('markdown-it')()
+            .use(require('@diplodoc/color-extension'), {
               inline: true,
             })
 
-md.render('{red}(sample)') // => '<span class="md-colorify md-colorify--red" style="color: red;">sample</span>'
+md.render('{red}(sample)') // => '<span class="yfm-colorify yfm-colorify--red" style="color: red;">sample</span>'
 ```
