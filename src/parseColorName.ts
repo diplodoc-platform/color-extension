@@ -1,13 +1,13 @@
 import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
-const open = 0x7b /* { */
-const close = 0x7d /* } */
+import {ColorTokenChar} from './constants';
+import {isEscaped} from './utils';
 
 /**
  * If successful, returns end pos.
  * Else, returns -1
  */
-export const parseColorName = (state: StateInline, start: number, disableNested: boolean): number => {
+export const parseColorName = (state: StateInline, start: number, disableNested: boolean, shouldEscape: boolean = false): number => {
   let level = 1
   let found = false
   let prevPos: number
@@ -19,7 +19,8 @@ export const parseColorName = (state: StateInline, start: number, disableNested:
 
   while (state.pos < max) {
     const marker = state.src.charCodeAt(state.pos)
-    if (marker === close) {
+
+    if (!(shouldEscape && isEscaped(state.src, state.pos)) && marker === ColorTokenChar.CloseColorName) {
       level--
       if (level === 0) {
         found = true
@@ -29,7 +30,8 @@ export const parseColorName = (state: StateInline, start: number, disableNested:
 
     prevPos = state.pos
     state.md.inline.skipToken(state)
-    if (marker === open) {
+
+    if (!(shouldEscape && isEscaped(state.src, state.pos)) && marker === ColorTokenChar.OpenColorName) {
       if (prevPos === state.pos - 1) {
         // increase level if we find open bracket, which is not a part of any token
         level++
