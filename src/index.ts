@@ -10,7 +10,7 @@ import {isEscaped} from './utils';
 export const colorPlugin: PluginWithOptions<Options> = (
   md,
   {
-    defaultClassName = 'md-colorify',
+    defaultClassName = 'yfm-colorify',
     inline = false,
     escape: shouldEscape = false,
   } = {},
