@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "run-s build:lib build:type",
-    "build:lib": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "build:lib": "node esbuild/build.mjs",
     "build:type": "tsc --emitDeclarationOnly --declaration -P tsconfig.types.json",
     "test": "jest"
   },
@@ -37,6 +37,7 @@
     "@babel/plugin-transform-arrow-functions": "^7.2.0",
     "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/preset-env": "^7.5.5",
+    "@diplodoc/lint": "^1.12.0",
     "@types/jest": "^29.5.14",
     "@types/markdown-it": "^13.0.9",
     "babel-loader": "^8.0.6",
@@ -44,7 +45,6 @@
     "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
     "babel-plugin-transform-es2015-template-literals": "^6.22.0",
     "core-js": "^3.2.1",
-    "esbuild": "^0.27.2",
     "jest": "^29.7.0",
     "markdown-it": "^13.0.2",
     "npm-run-all": "^4.1.5",
