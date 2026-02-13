@@ -1,5 +1,5 @@
 export interface Options {
-  defaultClassName?: string
-  inline?: boolean
-  escape?: boolean
+    defaultClassName?: string;
+    inline?: boolean;
+    escape?: boolean;
 }

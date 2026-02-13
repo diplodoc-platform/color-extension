@@ -2,18 +2,10 @@
   "name": "@diplodoc/color-extension",
   "version": "0.1.1",
   "description": "Inline color plugin for Diplodoc transformer and builder",
-  "main": "dist/index.js",
-  "types": "types/index.d.ts",
-  "files": [
-    "dist",
-    "src",
-    "types"
-  ],
-  "scripts": {
-    "build": "run-s build:lib build:type",
-    "build:lib": "node esbuild/build.mjs",
-    "build:type": "tsc --emitDeclarationOnly --declaration -P tsconfig.types.json",
-    "test": "jest"
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "engines": {
+    "npm": ">=11.5.1"
   },
   "repository": {
     "type": "git",
@@ -32,23 +24,40 @@
     "url": "https://github.com/diplodoc-platform/color-extension/issues"
   },
   "homepage": "https://github.com/diplodoc-platform/color-extension#readme",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "run-p build:*",
+    "build:js": "node esbuild/build.mjs",
+    "build:declarations": "tsc -p tsconfig.types.json --emitDeclarationOnly",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm test && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "lint update && lint",
+    "lint:fix": "lint update && lint fix",
+    "pre-commit": "lint update && lint-staged",
+    "prepare": "husky"
+  },
+  "peerDependencies": {
+    "markdown-it": "^13.0.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-transform-arrow-functions": "^7.2.0",
-    "@babel/plugin-transform-regenerator": "^7.4.5",
-    "@babel/preset-env": "^7.5.5",
-    "@diplodoc/lint": "^1.12.0",
-    "@types/jest": "^29.5.14",
+    "@diplodoc/lint": "^1.14.1",
+    "@diplodoc/tsconfig": "^1.0.2",
     "@types/markdown-it": "^13.0.9",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-transform-custom-element-classes": "^0.1.0",
-    "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
-    "babel-plugin-transform-es2015-template-literals": "^6.22.0",
-    "core-js": "^3.2.1",
-    "jest": "^29.7.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "markdown-it": "^13.0.2",
     "npm-run-all": "^4.1.5",
-    "ts-jest": "^29.3.2",
-    "typescript": "^4.1.3"
+    "typescript": "^5.3.3",
+    "vitest": "^3.2.4"
   }
 }

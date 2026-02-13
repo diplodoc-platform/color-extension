@@ -2,9 +2,20 @@
 
 import {build} from '@diplodoc/lint/esbuild';
 
-build({
-    entryPoints: ['src/index.ts'],
+import tsConfig from '../tsconfig.json' with {type: 'json'};
+
+/** @type {import('esbuild').BuildOptions} */
+const common = {
     bundle: true,
+    sourcemap: true,
+    target: tsConfig.compilerOptions?.target ?? 'es2022',
+    tsconfig: './tsconfig.json',
+};
+
+build({
+    ...common,
+    entryPoints: ['src/index.ts'],
     platform: 'node',
-    outfile: 'dist/index.js',
+    outfile: 'build/index.js',
+    minify: true,
 });
