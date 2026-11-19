@@ -19,13 +19,13 @@ Inline color plugin for [Diplodoc](https://diplodoc.com/) and [markdown-it](http
 npm install @diplodoc/color-extension
 ```
 
-**Peer dependency:** `markdown-it` ^13.0.0.
+Version 2 requires `markdown-it` ^15.0.3 and uses its built-in TypeScript types.
 
 ## Quick start
 
 ```javascript
 const MarkdownIt = require('markdown-it');
-const colorPlugin = require('@diplodoc/color-extension');
+const {colorPlugin} = require('@diplodoc/color-extension');
 
 const md = new MarkdownIt().use(colorPlugin);
 
@@ -37,7 +37,7 @@ With ESM:
 
 ```javascript
 import MarkdownIt from 'markdown-it';
-import colorPlugin from '@diplodoc/color-extension';
+import {colorPlugin} from '@diplodoc/color-extension';
 
 const md = new MarkdownIt().use(colorPlugin);
 md.renderInline('{primary}(sample)');

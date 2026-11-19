@@ -1,4 +1,4 @@
-import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
+import type {StateInline} from 'markdown-it';
 
 import {ColorTokenChar} from './constants';
 import {isEscaped} from './utils';
