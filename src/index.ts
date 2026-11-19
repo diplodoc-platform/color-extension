@@ -1,5 +1,4 @@
-import type ParserInline from 'markdown-it/lib/parser_inline';
-import type {PluginWithOptions} from 'markdown-it';
+import type {MarkdownIt, StateInline} from 'markdown-it';
 import type {Options} from './type';
 
 import {parseColorName} from './parseColorName';
@@ -7,11 +6,11 @@ import {parseContent} from './parseContent';
 import {ColorTokenChar} from './constants';
 import {isEscaped} from './utils';
 
-export const colorPlugin: PluginWithOptions<Options> = (
-    md,
-    {defaultClassName = 'yfm-colorify', inline = false, escape: shouldEscape = false} = {},
+export const colorPlugin = (
+    md: MarkdownIt,
+    {defaultClassName = 'yfm-colorify', inline = false, escape: shouldEscape = false}: Options = {},
 ) => {
-    const tokenize: ParserInline.RuleInline = (state, silent) => {
+    const tokenize = (state: StateInline, silent: boolean) => {
         const max = state.posMax;
 
         if (state.src.charCodeAt(state.pos) !== ColorTokenChar.OpenColorName) {
