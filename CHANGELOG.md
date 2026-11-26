@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/diplodoc-platform/color-extension/compare/v1.0.0...v2.0.0) (2026-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **markdown-it:** Color plugin hosts must use Markdown-it 15.0.3 or newer within major 15. Public declarations use the bundled Markdown-it types.
+
+### Features
+
+* **markdown-it:** require Markdown-it 15 ([720e941](https://github.com/diplodoc-platform/color-extension/commit/720e941176eb98e9c0a4f37afdc3f68efe13629a))
+
 ## [1.0.0](https://github.com/diplodoc-platform/color-extension/compare/v0.1.1...v1.0.0) (2026-08-06)
 
 
